@@ -1,85 +1,44 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-const AntTabs = styled(Tabs)({
-  borderBottom: '1px solid #e8e8e8',
-  '& .MuiTabs-indicator': {
-    backgroundColor: '#1890ff',
-  },
-});
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
 
-const AntTab = styled((props) => <Tab disableRipple {...props} />)(({ theme }) => ({
-  textTransform: 'none',
-  minWidth: 0,
-  [theme.breakpoints.up('sm')]: {
-    minWidth: 0,
-  },
-  fontWeight: theme.typography.fontWeightRegular,
-  marginRight: theme.spacing(1),
-  color: 'rgba(0, 0, 0, 0.85)',
-  fontFamily: [
-    '-apple-system',
-    'BlinkMacSystemFont',
-    '"Segoe UI"',
-    'Roboto',
-    '"Helvetica Neue"',
-    'Arial',
-    'sans-serif',
-    '"Apple Color Emoji"',
-    '"Segoe UI Emoji"',
-    '"Segoe UI Symbol"',
-  ].join(','),
-  '&:hover': {
-    color: '#40a9ff',
-    opacity: 1,
-  },
-  '&.Mui-selected': {
-    color: '#1890ff',
-    fontWeight: theme.typography.fontWeightMedium,
-  },
-  '&.Mui-focusVisible': {
-    backgroundColor: '#d1eaff',
-  },
-}));
+  return (
+      <div
+          role="tabpanel"
+          hidden={value !== index}
+          id={`simple-tabpanel-${index}`}
+          aria-labelledby={`simple-tab-${index}`}
+          {...other}
+      >
+        {value === index && (
+            <Box sx={{ p: 3 }}>
+              <Typography>{children}</Typography>
+            </Box>
+        )}
+      </div>
+  );
+}
 
-const StyledTabs = styled((props) => (
-  <Tabs
-    {...props}
-    TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
-  />
-))({
-  '& .MuiTabs-indicator': {
-    display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-  },
-  '& .MuiTabs-indicatorSpan': {
-    maxWidth: 40,
-    width: '100%',
-    backgroundColor: '#635ee7',
-  },
-});
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
 
-const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
-  ({ theme }) => ({
-    textTransform: 'none',
-    fontWeight: theme.typography.fontWeightRegular,
-    fontSize: theme.typography.pxToRem(15),
-    marginRight: theme.spacing(1),
-    color: 'rgba(255, 255, 255, 0.7)',
-    '&.Mui-selected': {
-      color: '#fff',
-    },
-    '&.Mui-focusVisible': {
-      backgroundColor: 'rgba(100, 95, 228, 0.32)',
-    },
-  }),
-);
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
 
-export default function CustomizedTabs() {
+export default function BasicTabs() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -87,29 +46,92 @@ export default function CustomizedTabs() {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Box sx={{ bgcolor: '#fff' }}>
-        <AntTabs value={value} onChange={handleChange} aria-label="ant example">
-          <AntTab label={<div>
-			hello
-		  </div>} />
-          <AntTab label="Tab 2" />
-          <AntTab label="Tab 3" />
-        </AntTabs>
-        <Box sx={{ p: 3 }} />
+      <Box sx={{ width: '100%' }}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+          }}>
+          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+            <Tab label={
+                <div style={{
+                    textTransform: "none",
+                    margin: "20px",
+                }}>
+                    <div style={{display: "flex", marginBottom: "15px"}}>
+                        <div>icon-</div>
+                        <span style={{fontWeight: "bold"}}>Tüm Firma Talepleri</span>
+                    </div>
+                    <div style={{display: "flex", justifyContent: "space-between"}}>
+                        <div style={{width: "50px", marginRight: "20px"}}><hr/></div>
+                        <span>100</span>
+                        <div style={{width: "50px", marginLeft: "20px"}}><hr/></div>
+                    </div>
+                </div>
+            } {...a11yProps(0)} />
+            <Tab label={
+                <div style={{
+                    textTransform: "none",
+                    margin: "20px",
+                }}>
+                    <div style={{display: "flex", marginBottom: "15px"}}>
+                        <div>icon-</div>
+                        <span style={{fontWeight: "bold"}}>Tüm Firma Talepleri</span>
+                    </div>
+                    <div style={{display: "flex", justifyContent: "space-between"}}>
+                        <div style={{width: "50px", marginRight: "20px"}}><hr/></div>
+                        <span>100</span>
+                        <div style={{width: "50px", marginLeft: "20px"}}><hr/></div>
+                    </div>
+                </div>
+            } {...a11yProps(1)} />
+            <Tab label={
+                <div style={{
+                    textTransform: "none",
+                    margin: "20px",
+                }}>
+                    <div style={{display: "flex", marginBottom: "15px"}}>
+                        <div>icon-</div>
+                        <span style={{fontWeight: "bold"}}>Tüm Firma Talepleri</span>
+                    </div>
+                    <div style={{display: "flex", justifyContent: "space-between"}}>
+                        <div style={{width: "50px", marginRight: "20px"}}><hr/></div>
+                        <span>100</span>
+                        <div style={{width: "50px", marginLeft: "20px"}}><hr/></div>
+                    </div>
+                </div>
+            } {...a11yProps(2)} />
+              <Tab label={
+                  <div style={{
+                      textTransform: "none",
+                      margin: "20px",
+                  }}>
+                      <div style={{display: "flex", marginBottom: "15px"}}>
+                          <div>icon-</div>
+                          <span style={{fontWeight: "bold"}}>Tüm Firma Talepleri</span>
+                      </div>
+                      <div style={{display: "flex", justifyContent: "space-between"}}>
+                          <div style={{width: "50px", marginRight: "20px"}}><hr/></div>
+                          <span>100</span>
+                          <div style={{width: "50px", marginLeft: "20px"}}><hr/></div>
+                      </div>
+                  </div>
+              } {...a11yProps(3)} />
+          </Tabs>
+        </Box>
+        <TabPanel value={value} index={0}>
+          Item One
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          Item Two
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          Item Three
+        </TabPanel>
+          <TabPanel value={value} index={3}>
+              Item Four
+          </TabPanel>
       </Box>
-      <Box sx={{ bgcolor: '#2e1534' }}>
-        <StyledTabs
-          value={value}
-          onChange={handleChange}
-          aria-label="styled tabs example"
-        >
-          <StyledTab label="Workflows" />
-          <StyledTab label="Datasets" />
-          <StyledTab label="Connections" />
-        </StyledTabs>
-        <Box sx={{ p: 3 }} />
-      </Box>
-    </Box>
   );
 }
