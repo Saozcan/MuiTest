@@ -6,7 +6,7 @@ import {TextField} from "@mui/material";
 
 // todo: input value kullanılarak filtre yapılacak.
 
-export default function CustomizedInputBase() {
+export default function CustomizedInputBase({searchValue}) {
     const [inputValue, setInputValue] = useState('');
 
     const handleChange = (event) => {
@@ -14,6 +14,7 @@ export default function CustomizedInputBase() {
     }
 
     const handleOnClick = () => {
+        searchValue(inputValue);
     }
 
     return (
