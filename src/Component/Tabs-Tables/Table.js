@@ -1,10 +1,11 @@
 import React from "react"
 import CustomizedInputBase from "./SearchBar";
-import {Switch} from "@mui/material";
+import {Box, Switch} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import {styled} from "@mui/material/styles";
-import {Assignment, BusinessCenter, Person, PersonOutlined} from "@mui/icons-material";
+import {Assignment, BusinessCenter, PersonOutlined} from "@mui/icons-material";
+import TableData from "./TableData";
 
 const CustomButton = styled(Button)(({theme}) => ({
     color: "grey",
@@ -33,11 +34,15 @@ export default function TableFirst() {
     console.log(searchValue);
 
     return (
-        <div>
+        <div style={{
+            width: "100%",
+            maxWidth: "1200px",
+            padding: "10px",
+            backgroundColor: "white",
+        }}
+        >
             <div style={{
                 width: "100%",
-                maxWidth: "1200px",
-                padding: "10px",
                 backgroundColor: "white",
                 display: "flex",
                 alignItems: "center",
@@ -54,13 +59,16 @@ export default function TableFirst() {
                     <Typography sx={[{color: "grey",}, switchCheck && {color: "blue"},]}>Sadece Açık
                         Pozisyonlar</Typography>
                 </div>
-                <div className="buttons">
+                <div className="buttons" style={{paddingRight: "5px"}}>
                     <CustomButton variant="outlined"><BusinessCenter sx={{marginRight: "5px"}}/> Firma
                         Ekle</CustomButton>
                     <CustomButton variant="outlined"><Assignment sx={{marginRight: "5px"}}/> Talep Ekle</CustomButton>
                     <CustomButton variant="outlined"><PersonOutlined sx={{marginRight: "5px"}}/> Aday
                         Ekle</CustomButton>
                 </div>
+            </div>
+            <div>
+                <TableData></TableData>
             </div>
         </div>
     )

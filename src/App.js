@@ -3,7 +3,6 @@ import CustomizedTabs from './Component/Tabs-Tables/Tabs';
 
 
 const Header = () => {
-
 	return (
 		<ButtonAppBar/>
 	)

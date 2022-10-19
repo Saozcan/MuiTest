@@ -35,11 +35,10 @@ export default function CustomizedInputBase({searchValue}) {
                 onChange={handleChange}
             />
             <Button
-                style={{ borderRadius: "0"}}
+                style={{borderRadius: "0"}}
                 size="large"
                 onClick={handleOnClick}
                 variant="contained"><Search/> </Button>
         </div>
-    )
-        ;
+    );
 }
