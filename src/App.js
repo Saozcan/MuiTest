@@ -1,19 +1,24 @@
-import './App.css';
 import ButtonAppBar from './Component/ButtonAppBar';
-import CustomizedTabs from './Component/Tabs';
+import CustomizedTabs from './Component/Tabs-Tables/Tabs';
 
 
 const Header = () => {
 
 	return (
-		<ButtonAppBar></ButtonAppBar>
+		<ButtonAppBar/>
 	)
 }
 
 const Main = () => {
 
 	return (
-		<CustomizedTabs></CustomizedTabs>
+		<div style={{
+			display: "flex",
+			justifyContent: "center",
+			alignItems: "center"
+		}}>
+		<CustomizedTabs/>
+		</div>
 	)
 }
 
@@ -24,8 +29,8 @@ const Main = () => {
 function App() {
   return (
     <div>
-		<Header></Header>
-		<Main></Main>
+		<Header/>
+		<Main/>
 		
 	</div>
   );
